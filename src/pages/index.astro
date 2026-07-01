@@ -1,0 +1,635 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const stats = [
+  { value: 15,   suffix: '+', label: 'Years Experience',   decimal: false },
+  { value: 5000, suffix: '+', label: 'Happy Patients',     decimal: false },
+  { value: 20,   suffix: '+', label: 'Treatments Offered', decimal: false },
+  { value: 4.9,  suffix: '★', label: 'Star Rating',        decimal: true  },
+];
+
+const services = [
+  {
+    title: 'General Dentistry',
+    desc: 'Comprehensive check-ups, cleanings, and preventive care for lifelong oral health.',
+    accent: 'bg-sky-50 text-sky-600',
+    icon: 'M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z',
+  },
+  {
+    title: 'Teeth Whitening',
+    desc: 'Professional brightening treatments for a radiant, luminous, confident smile.',
+    accent: 'bg-amber-50 text-amber-600',
+    icon: 'M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z',
+  },
+  {
+    title: 'Braces & Aligners',
+    desc: 'Invisible aligners and traditional braces for a perfectly straightened smile.',
+    accent: 'bg-violet-50 text-violet-600',
+    icon: 'M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5',
+  },
+  {
+    title: 'Root Canal',
+    desc: 'Pain-free endodontic treatment to save and restore infected or damaged teeth.',
+    accent: 'bg-red-50 text-red-500',
+    icon: 'M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z',
+  },
+  {
+    title: 'Dental Implants',
+    desc: 'Permanent, natural-looking tooth replacement anchored securely in the jaw.',
+    accent: 'bg-emerald-50 text-emerald-600',
+    icon: 'M21.75 6.75a4.5 4.5 0 0 1-4.884 4.484c-1.076-.091-2.264.071-2.95.904l-7.152 8.684a2.548 2.548 0 1 1-3.586-3.585l8.684-7.152c.833-.686.995-1.874.904-2.95a4.5 4.5 0 0 1 6.336-4.486l-3.276 3.276a3.004 3.004 0 0 0 2.25 2.25l3.276-3.276c.256.565.398 1.192.398 1.852Z',
+  },
+  {
+    title: 'Kids Dentistry',
+    desc: 'Gentle, fun dental care designed especially for little smiles and anxious children.',
+    accent: 'bg-pink-50 text-pink-600',
+    icon: 'M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z',
+  },
+];
+
+const features = [
+  {
+    title: 'Experienced Dentists',
+    desc: '15+ years of specialized dental expertise across all disciplines, from routine care to advanced procedures.',
+    icon: 'M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342M6.75 15a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm0 0v-3.675A55.378 55.378 0 0 1 12 8.443m-7.007 11.55A5.981 5.981 0 0 0 6.75 15.75v-1.5',
+  },
+  {
+    title: 'Modern Equipment',
+    desc: 'State-of-the-art digital X-rays, 3D scanning, and laser technology for precise, comfortable treatment.',
+    icon: 'M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25',
+  },
+  {
+    title: 'Painless Treatment',
+    desc: 'Advanced local anaesthesia and a gentle touch make every visit as comfortable as possible — even for nervous patients.',
+    icon: 'M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z',
+  },
+  {
+    title: 'Affordable Care',
+    desc: 'Transparent pricing, flexible payment plans, and wide insurance compatibility — quality care that fits your budget.',
+    icon: 'M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z',
+  },
+];
+
+const testimonials = [
+  {
+    name: 'Sara Ahmed',
+    role: 'Patient since 2018',
+    text: "SmileCare completely transformed my smile. The team is incredibly professional and the results are outstanding. My confidence has soared — I can't thank them enough!",
+    rating: 5,
+    initials: 'SA',
+    color: 'bg-sky-500',
+  },
+  {
+    name: 'Ahmad Raza',
+    role: 'Patient since 2020',
+    text: "I used to dread going to the dentist, but SmileCare changed that completely. The painless treatment and caring staff make every visit a genuinely pleasant experience.",
+    rating: 5,
+    initials: 'AR',
+    color: 'bg-violet-500',
+  },
+  {
+    name: 'Fatima Khan',
+    role: 'Parent of two patients',
+    text: "My kids actually look forward to their dental appointments now! The team has a magical way with children — gentle, patient, and fun. Best decision for our family's oral health.",
+    rating: 5,
+    initials: 'FK',
+    color: 'bg-pink-500',
+  },
+  {
+    name: 'Bilal Hussain',
+    role: 'Patient since 2019',
+    text: "Finally found a dentist who explains everything clearly and never rushes. The implants are flawless — you honestly cannot tell they are not natural teeth. Worth every rupee.",
+    rating: 5,
+    initials: 'BH',
+    color: 'bg-emerald-500',
+  },
+];
+
+const avatarColors = ['bg-sky-500', 'bg-violet-500', 'bg-pink-500', 'bg-emerald-500'];
+---
+
+<BaseLayout
+  title="SmileCare Dental Clinic — Modern Dental Care in Lahore"
+  description="Modern, compassionate dental care for the whole family in Lahore. General dentistry, implants, whitening, braces & more. Book today."
+>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       1. HERO
+       ═══════════════════════════════════════════════════════════ -->
+  <section
+    id="home"
+    class="relative mt-16 flex min-h-[calc(100vh-4rem)] items-center overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-slate-50"
+  >
+    <!-- Ambient blobs -->
+    <div class="pointer-events-none absolute -right-40 -top-40 h-[640px] w-[640px] rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-40 -left-40 h-[540px] w-[540px] rounded-full bg-accent/10 blur-3xl"></div>
+
+    <div class="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-2 lg:gap-16 lg:px-8">
+
+      <!-- Text -->
+      <div>
+        <div class="anim-hero" style="animation-delay:0ms">
+          <span class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+            <span>⭐</span> Lahore's Most Trusted Dental Clinic
+          </span>
+        </div>
+
+        <h1 class="anim-hero mt-6 text-5xl font-extrabold leading-[1.1] tracking-tight text-text sm:text-6xl" style="animation-delay:100ms">
+          Your Smile,<br />
+          <span class="text-primary">Our Priority</span>
+        </h1>
+
+        <p class="anim-hero mt-6 max-w-lg text-lg leading-relaxed text-text-muted" style="animation-delay:200ms">
+          Modern, compassionate dental care for every stage of life — from routine check-ups to advanced treatments, right here in Lahore.
+        </p>
+
+        <div class="anim-hero mt-10 flex flex-wrap gap-4" style="animation-delay:300ms">
+          <a
+            href="/book"
+            class="inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-primary/25 transition-all duration-200 hover:bg-primary-dark hover:shadow-xl active:scale-95"
+          >
+            Book Appointment
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+          <a
+            href="/services"
+            class="inline-flex items-center gap-2 rounded-xl border-2 border-primary/30 bg-white px-7 py-3.5 text-base font-semibold text-primary transition-all duration-200 hover:border-primary hover:bg-primary/5 active:scale-95"
+          >
+            Our Services
+          </a>
+        </div>
+
+        <!-- Social proof mini-bar -->
+        <div class="anim-hero mt-10 flex items-center gap-4" style="animation-delay:400ms">
+          <div class="flex -space-x-2.5">
+            {avatarColors.map((color, i) => (
+              <div class={`flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-xs font-bold text-white ${color}`}>
+                {testimonials[i].initials}
+              </div>
+            ))}
+          </div>
+          <p class="text-sm text-text-muted">
+            <span class="font-semibold text-text">5,000+ patients</span> trust SmileCare
+          </p>
+        </div>
+      </div>
+
+      <!-- Image — swap inner div for <img src="…" alt="…" class="absolute inset-0 h-full w-full object-cover"> when ready -->
+      <div class="anim-hero lg:pl-4" style="animation-delay:150ms">
+        <div class="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-2xl lg:aspect-auto lg:h-[480px]">
+
+          <!-- Placeholder fill (remove when adding a real photo) -->
+          <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-sky-100 via-blue-100 to-indigo-100">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-sky-300/50" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"/>
+            </svg>
+          </div>
+
+          <!-- Bottom vignette so the white card stays readable over any photo -->
+          <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent"></div>
+
+          <!-- Est. 2010 badge -->
+          <div class="absolute left-5 top-5 rounded-2xl bg-white/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
+            <p class="text-xs font-semibold text-text">Est. 2010</p>
+            <p class="text-xs text-text-muted">Gulberg, Lahore</p>
+          </div>
+
+          <!-- Accepting patients card -->
+          <div class="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/95 p-4 shadow-xl backdrop-blur-sm">
+            <div class="flex items-center gap-3">
+              <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5"/>
+                </svg>
+              </div>
+              <div>
+                <p class="text-sm font-semibold text-text">Accepting new patients</p>
+                <p class="text-xs text-text-muted">Mon–Sat · 9 AM – 7 PM</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <a
+      href="#trust"
+      aria-label="Scroll to stats"
+      class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce text-text-muted transition-colors hover:text-primary"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+      </svg>
+    </a>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       2. TRUST BAR
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="trust" class="border-y border-border bg-white py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 gap-10 lg:grid-cols-4">
+        {stats.map((stat, i) => (
+          <div class="reveal text-center" data-delay={i * 100}>
+            <div class="text-4xl font-extrabold tabular-nums text-primary sm:text-5xl">
+              <span
+                class="count-up"
+                data-count-to={stat.value}
+                data-suffix={stat.suffix}
+                data-decimal={stat.decimal ? 'true' : undefined}
+              >0{stat.suffix}</span>
+            </div>
+            <p class="mt-2 text-sm font-medium text-text-muted">{stat.label}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       3. SERVICES PREVIEW
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="services" class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div class="reveal mx-auto mb-14 max-w-2xl text-center" data-delay="0">
+        <span class="text-sm font-semibold uppercase tracking-widest text-primary">What We Offer</span>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+          Comprehensive Dental Services
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-text-muted">
+          From prevention to full restoration — we offer every treatment your family needs under one roof.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s, i) => (
+          <div
+            class="reveal group cursor-default rounded-2xl border border-border bg-white p-7 transition-all duration-300 hover:-translate-y-1.5 hover:border-transparent hover:shadow-xl hover:shadow-slate-200/80"
+            data-delay={i * 80}
+          >
+            <div class={`mb-5 inline-flex h-14 w-14 items-center justify-center rounded-2xl ${s.accent}`}>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d={s.icon}/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-text">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-muted">{s.desc}</p>
+            <div class="mt-5 flex items-center gap-1 text-sm font-medium text-primary opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+              </svg>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       4. ABOUT PREVIEW
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="about" class="border-t border-border bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-14 lg:grid-cols-2">
+
+        <!-- Image placeholder — swap with <img src="..." alt="..."> when ready -->
+        <div class="reveal" data-delay="0">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-100 via-blue-50 to-indigo-100 shadow-2xl">
+            <div class="aspect-[4/3] flex items-center justify-center">
+              <svg viewBox="0 0 100 120" class="h-72 w-auto select-none text-sky-200/60" fill="currentColor" aria-hidden="true">
+                <ellipse cx="50" cy="82" rx="32" ry="35"/>
+                <ellipse cx="32" cy="33" rx="20" ry="23"/>
+                <ellipse cx="68" cy="33" rx="20" ry="23"/>
+                <ellipse cx="50" cy="26" rx="17" ry="19"/>
+              </svg>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-transparent"></div>
+            <!-- Floating badges -->
+            <div class="absolute left-5 top-5 rounded-2xl bg-white/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
+              <span class="block text-xl font-extrabold text-primary">Est. 2010</span>
+              <span class="text-xs text-text-muted">Gulberg, Lahore</span>
+            </div>
+            <div class="absolute bottom-5 right-5 rounded-2xl bg-white/95 px-4 py-2.5 shadow-lg backdrop-blur-sm">
+              <span class="block text-xl font-extrabold text-primary">5,000+</span>
+              <span class="text-xs text-text-muted">Smiles restored</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Text -->
+        <div class="reveal" data-delay="150">
+          <span class="text-sm font-semibold uppercase tracking-widest text-primary">About SmileCare</span>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+            Caring for Lahore's Smiles Since&nbsp;2010
+          </h2>
+          <p class="mt-5 text-base leading-relaxed text-text-muted">
+            At SmileCare, we believe a healthy smile is the foundation of confidence and well-being. Founded in 2010, our clinic in Gulberg has served thousands of families across Lahore with truly patient-centred care.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-text-muted">
+            Our experienced dentists combine the latest digital technology with a gentle, unhurried approach — making every visit comfortable, transparent, and effective for patients of all ages.
+          </p>
+
+          <ul class="mt-8 space-y-3">
+            {[
+              'Fully qualified, internationally trained dentists',
+              'Strict sterilisation and infection-control protocols',
+              'Digital X-rays and 3D imaging on site',
+              'Family-friendly environment for all ages',
+            ].map(item => (
+              <li class="flex items-start gap-3 text-sm text-text-muted">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mt-0.5 h-5 w-5 shrink-0 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                </svg>
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="/about"
+            class="mt-8 inline-flex items-center gap-2 rounded-xl border-2 border-primary px-6 py-3 text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-white active:scale-95"
+          >
+            Learn More About Us
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       5. WHY CHOOSE US
+       ═══════════════════════════════════════════════════════════ -->
+  <section
+    id="why"
+    class="py-24"
+    style="background: linear-gradient(150deg, #f0f9ff 0%, #e0f2fe 55%, #f8fafc 100%);"
+  >
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div class="reveal mx-auto mb-16 max-w-2xl text-center" data-delay="0">
+        <span class="text-sm font-semibold uppercase tracking-widest text-primary">Why SmileCare</span>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+          The SmileCare Difference
+        </h2>
+        <p class="mt-4 text-base leading-relaxed text-text-muted">
+          Here's why thousands of Lahore families choose us for their dental health.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        {features.map((f, i) => (
+          <div class="reveal text-center" data-delay={i * 110}>
+            <div class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-white shadow-md shadow-primary/10">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-9 w-9 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d={f.icon}/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-semibold text-text">{f.title}</h3>
+            <p class="mt-3 text-sm leading-relaxed text-text-muted">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       6. TESTIMONIALS
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="testimonials" class="border-t border-border bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div class="reveal mx-auto mb-14 max-w-2xl text-center" data-delay="0">
+        <span class="text-sm font-semibold uppercase tracking-widest text-primary">Patient Stories</span>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+          What Our Patients Say
+        </h2>
+        <p class="mt-4 text-base text-text-muted">
+          Real feedback from real patients — because your smile is our best review.
+        </p>
+      </div>
+
+      <!-- Slider -->
+      <div class="reveal relative px-8 sm:px-10" data-delay="100">
+
+        <!-- Track -->
+        <div class="overflow-hidden" id="testimonial-container">
+          <div
+            id="testimonial-track"
+            class="flex"
+            style="transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);"
+          >
+            {testimonials.map((t) => (
+              <div class="min-w-full">
+                <div class="mx-auto max-w-2xl rounded-2xl border border-border bg-bg p-8 sm:p-10">
+                  <!-- Stars -->
+                  <div class="flex gap-1">
+                    {Array.from({ length: 5 }, (_, si) => (
+                      <svg class={`h-5 w-5 ${si < t.rating ? 'text-amber-400' : 'text-slate-200'}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 0 0 .95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 0 0-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 0 0-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 0 0-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 0 0 .951-.69l1.07-3.292Z"/>
+                      </svg>
+                    ))}
+                  </div>
+
+                  <blockquote class="mt-5 text-base leading-relaxed text-text-muted sm:text-lg">
+                    "{t.text}"
+                  </blockquote>
+
+                  <div class="mt-8 flex items-center gap-4">
+                    <div class={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white ${t.color}`}>
+                      {t.initials}
+                    </div>
+                    <div>
+                      <p class="font-semibold text-text">{t.name}</p>
+                      <p class="text-sm text-text-muted">{t.role}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Prev arrow -->
+        <button
+          id="prev-btn"
+          class="absolute left-0 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-text-muted shadow transition-all hover:border-primary hover:text-primary"
+          aria-label="Previous review"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/>
+          </svg>
+        </button>
+
+        <!-- Next arrow -->
+        <button
+          id="next-btn"
+          class="absolute right-0 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-white text-text-muted shadow transition-all hover:border-primary hover:text-primary"
+          aria-label="Next review"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Dot navigation -->
+      <div
+        id="testimonial-dots"
+        class="mt-8 flex justify-center gap-2"
+        role="tablist"
+        aria-label="Testimonial navigation"
+      >
+        {testimonials.map((t, i) => (
+          <button
+            class={`testimonial-dot ${i === 0 ? 'active' : ''}`}
+            data-index={i}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`Review by ${t.name}`}
+          ></button>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       7. CTA BAND
+       ═══════════════════════════════════════════════════════════ -->
+  <section id="cta" class="relative overflow-hidden bg-primary py-24">
+    <div class="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <div class="reveal" data-delay="0">
+        <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          Ready to Book Your Visit?
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/80">
+          Join over 5,000 patients who trust SmileCare for healthy, confident smiles.<br class="hidden sm:block" />
+          Appointments available six days a week.
+        </p>
+        <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a
+            href="/book"
+            class="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-semibold text-primary shadow-xl transition-all duration-200 hover:bg-slate-50 hover:shadow-2xl active:scale-95"
+          >
+            Book Appointment
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/>
+            </svg>
+          </a>
+          <a
+            href="tel:+923001234567"
+            class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:border-white hover:bg-white/10 active:scale-95"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+            </svg>
+            Call Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       CLIENT SCRIPTS
+       ═══════════════════════════════════════════════════════════ -->
+  <script>
+    // carouselTimer lives at module scope so we can cancel it when navigating back
+    let carouselTimer: ReturnType<typeof setInterval> | undefined;
+
+    document.addEventListener('astro:page-load', () => {
+      /* ── Count-up ───────────────────────────────────────────────── */
+      function runCountUp(el: HTMLElement) {
+        const target  = parseFloat(el.dataset.countTo ?? '0');
+        const suffix  = el.dataset.suffix ?? '';
+        const decimal = el.dataset.decimal === 'true';
+        const dur     = 2000;
+        const t0      = performance.now();
+
+        (function tick(now: number) {
+          const progress = Math.min((now - t0) / dur, 1);
+          const eased    = 1 - Math.pow(1 - progress, 3);
+          el.textContent = (decimal
+            ? (eased * target).toFixed(1)
+            : Math.round(eased * target)
+          ) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        })(t0);
+      }
+
+      const countIO = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            runCountUp(entry.target as HTMLElement);
+            countIO.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.5 }
+      );
+      document.querySelectorAll<HTMLElement>('.count-up').forEach(el => countIO.observe(el));
+
+      /* ── Testimonial carousel ───────────────────────────────────── */
+      clearInterval(carouselTimer);
+
+      const track = document.getElementById('testimonial-track') as HTMLElement | null;
+      if (!track) return;
+
+      const dots      = document.querySelectorAll<HTMLElement>('.testimonial-dot');
+      const prevBtn   = document.getElementById('prev-btn')!;
+      const nextBtn   = document.getElementById('next-btn')!;
+      const container = document.getElementById('testimonial-container')!;
+      const total     = dots.length;
+      let   current   = 0;
+
+      function goTo(index: number) {
+        current = ((index % total) + total) % total;
+        track.style.transform = `translateX(-${current * 100}%)`;
+        dots.forEach((d, i) => {
+          const active = i === current;
+          d.classList.toggle('active', active);
+          d.setAttribute('aria-selected', String(active));
+        });
+      }
+
+      function play()  { carouselTimer = setInterval(() => goTo(current + 1), 5500); }
+      function pause() { clearInterval(carouselTimer); }
+
+      prevBtn.addEventListener('click', () => { pause(); goTo(current - 1); play(); });
+      nextBtn.addEventListener('click', () => { pause(); goTo(current + 1); play(); });
+      dots.forEach(d => {
+        d.addEventListener('click', () => {
+          pause();
+          goTo(parseInt(d.dataset.index ?? '0', 10));
+          play();
+        });
+      });
+
+      container.addEventListener('mouseenter', pause);
+      container.addEventListener('mouseleave', play);
+
+      play();
+    });
+  </script>
+
+</BaseLayout>

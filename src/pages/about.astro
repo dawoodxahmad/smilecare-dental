@@ -1,0 +1,284 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const team = [
+  { name: 'Dr. Ayesha Malik',   role: 'Lead Dentist & Founder',  quals: 'BDS (UHS) · FCPS – Restorative Dentistry',         initials: 'AM', bg: 'bg-sky-100',     accent: 'bg-sky-500'     },
+  { name: 'Dr. Omar Siddiqui',  role: 'Orthodontist',             quals: 'BDS · MDS Orthodontics (King Edward Medical)',      initials: 'OS', bg: 'bg-violet-100',  accent: 'bg-violet-500'  },
+  { name: 'Dr. Zainab Raza',    role: 'Pediatric Dentist',        quals: 'BDS · MDS Pedodontics (Fatima Jinnah Dental)',      initials: 'ZR', bg: 'bg-pink-100',    accent: 'bg-pink-500'    },
+  { name: 'Mr. Tariq Ahmed',    role: 'Dental Hygienist',         quals: 'Certified Dental Hygienist · Patient Coordinator',  initials: 'TA', bg: 'bg-emerald-100', accent: 'bg-emerald-500' },
+];
+
+const values = [
+  { title: 'Patient First',        desc: 'Every decision centres on comfort, safety, and long-term oral health.' },
+  { title: 'Clinical Excellence',  desc: 'Continuous professional development keeps us at the cutting edge of modern dentistry.' },
+  { title: 'Integrity',            desc: 'Honest diagnoses, transparent pricing, no unnecessary treatments — ever.' },
+  { title: 'Compassion',           desc: 'A welcoming, anxiety-free environment for patients of all ages.' },
+];
+
+const milestones = [
+  { year: '2010', text: 'SmileCare opens its doors on Gulberg Main Boulevard with a team of three.' },
+  { year: '2013', text: 'Digital X-ray and 3D imaging suite installed — a first for the area.' },
+  { year: '2016', text: 'Orthodontics and pediatric departments added to serve more families.' },
+  { year: '2019', text: 'Expanded to a six-surgery clinic with a dedicated on-site dental laboratory.' },
+  { year: '2022', text: 'Reached 5,000 patients and launched WhatsApp appointment booking.' },
+  { year: '2025', text: 'Recognised as a Centre of Excellence for Implantology by the Pakistan Dental Association.' },
+];
+
+const facilities = [
+  { label: 'Treatment Room 1',    gradient: 'from-indigo-100 to-violet-200',  textColor: 'text-violet-700' },
+  { label: 'Digital X-Ray Suite', gradient: 'from-emerald-100 to-teal-200',   textColor: 'text-emerald-700' },
+  { label: 'Kids Corner',         gradient: 'from-pink-100 to-rose-200',       textColor: 'text-pink-700' },
+  { label: 'Sterilisation Room',  gradient: 'from-amber-100 to-yellow-200',    textColor: 'text-amber-700' },
+];
+
+const drStats = [
+  { value: '15+',   label: 'Years in Practice'         },
+  { value: '5,000+',label: 'Patients Treated'          },
+  { value: '98%',   label: 'Patient Satisfaction'      },
+  { value: '3',     label: 'Specialist Qualifications' },
+];
+---
+
+<BaseLayout
+  title="About Us — SmileCare Dental Clinic Lahore"
+  description="Meet the team behind SmileCare — experienced, compassionate dental professionals dedicated to modern care in Gulberg, Lahore since 2010."
+>
+
+  <!-- ── HERO STRIP ─────────────────────────────────────────────── -->
+  <section class="inner-hero relative overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-slate-50">
+    <div class="pointer-events-none absolute -right-40 -top-40 h-[540px] w-[540px] rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-accent/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav class="anim-hero text-sm text-text-muted" style="animation-delay:0ms" aria-label="Breadcrumb">
+        <a href="/" class="transition-colors hover:text-primary">Home</a>
+        <span class="mx-2">/</span>
+        <span class="font-medium text-text">About</span>
+      </nav>
+      <h1 class="anim-hero mt-4 text-4xl font-extrabold tracking-tight text-text sm:text-5xl lg:text-6xl" style="animation-delay:100ms">
+        About <span class="text-primary">SmileCare</span>
+      </h1>
+      <p class="anim-hero mt-5 max-w-xl text-lg leading-relaxed text-text-muted" style="animation-delay:200ms">
+        A team of passionate dental professionals dedicated to healthy smiles and genuinely comfortable care — right here in Lahore since 2010.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ── LEAD DENTIST BIO ───────────────────────────────────────── -->
+  <section class="border-t border-border bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid items-center gap-16 lg:grid-cols-2">
+
+        <!-- Photo placeholder -->
+        <div class="reveal" data-delay="0">
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-100 via-blue-100 to-indigo-200 shadow-2xl">
+            <div class="aspect-[3/4] flex items-center justify-center">
+              <div class="flex flex-col items-center gap-4">
+                <div class="flex h-32 w-32 items-center justify-center rounded-full bg-white/60">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-sky-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                  </svg>
+                </div>
+                <div class="space-y-2 text-center">
+                  <div class="h-3 w-36 rounded-full bg-white/50 mx-auto"></div>
+                  <div class="h-2 w-24 rounded-full bg-white/30 mx-auto"></div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/25 via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-text/70 to-transparent p-6">
+              <p class="text-lg font-bold text-white">Dr. Ayesha Malik</p>
+              <p class="text-sm text-white/80">BDS · FCPS · Lead Dentist &amp; Founder</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bio -->
+        <div class="reveal" data-delay="150">
+          <span class="text-sm font-semibold uppercase tracking-widest text-primary">Meet the Founder</span>
+          <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Dr. Ayesha Malik</h2>
+
+          <div class="mt-4 flex flex-wrap gap-2">
+            {['BDS (UHS, Lahore)', 'FCPS — Restorative Dentistry', '15+ Years Experience', 'Implant Specialist'].map(q => (
+              <span class="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">{q}</span>
+            ))}
+          </div>
+
+          <p class="mt-6 text-base leading-relaxed text-text-muted">
+            Dr. Ayesha Malik founded SmileCare in 2010 after completing her Fellowship in Restorative Dentistry at the College of Physicians &amp; Surgeons Pakistan. With over 15 years of hands-on experience, she has treated thousands of patients — from anxious first-timers to complex implant cases.
+          </p>
+          <p class="mt-4 text-base leading-relaxed text-text-muted">
+            Her philosophy is simple: <span class="font-medium text-text">every patient deserves to understand their treatment, feel no pain, and leave with confidence.</span> She continues to attend international conferences to bring the latest techniques back to Lahore.
+          </p>
+
+          <div class="mt-8 grid grid-cols-2 gap-5">
+            {drStats.map(({ value, label }) => (
+              <div class="rounded-2xl border border-border bg-bg p-5 text-center">
+                <p class="text-2xl font-extrabold text-primary">{value}</p>
+                <p class="mt-1 text-xs text-text-muted">{label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── CLINIC STORY + TIMELINE ────────────────────────────────── -->
+  <section class="py-24" style="background: linear-gradient(150deg, #f0f9ff 0%, #e0f2fe 55%, #f8fafc 100%);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-16 lg:grid-cols-2">
+
+        <!-- Story + values -->
+        <div>
+          <div class="reveal" data-delay="0">
+            <span class="text-sm font-semibold uppercase tracking-widest text-primary">Our Story</span>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
+              From a Single Chair to Lahore's Most Trusted Practice
+            </h2>
+          </div>
+          <p class="reveal mt-5 text-base leading-relaxed text-text-muted" data-delay="80">
+            SmileCare began in 2010 as a one-surgery practice on Gulberg Main Boulevard. Dr. Ayesha Malik had one mission: make high-quality dental care accessible, comfortable, and free of fear for every patient.
+          </p>
+          <p class="reveal mt-4 text-base leading-relaxed text-text-muted" data-delay="160">
+            Fifteen years on, that same mission drives a six-surgery clinic with specialists, an on-site dental lab, and digital imaging technology — serving families across Lahore and beyond.
+          </p>
+
+          <div class="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
+            {values.map((v, i) => (
+              <div class="reveal rounded-2xl border border-border bg-white p-6" data-delay={240 + i * 80}>
+                <h3 class="font-semibold text-text">{v.title}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-text-muted">{v.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div>
+          <div class="reveal" data-delay="50">
+            <span class="text-sm font-semibold uppercase tracking-widest text-primary">Our Journey</span>
+            <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Milestones</h2>
+          </div>
+
+          <div class="relative mt-8">
+            {milestones.map((m, i) => (
+              <div class="reveal relative flex gap-6 pb-10 last:pb-0" data-delay={150 + i * 70}>
+                {i < milestones.length - 1 && (
+                  <div class="absolute bottom-0 left-[21px] top-11 w-px bg-border" aria-hidden="true"></div>
+                )}
+                <div class="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-primary/10">
+                  <div class="h-3 w-3 rounded-full bg-primary"></div>
+                </div>
+                <div>
+                  <span class="text-xs font-bold uppercase tracking-widest text-primary">{m.year}</span>
+                  <p class="mt-1 text-sm leading-relaxed text-text-muted">{m.text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── MEET THE TEAM ──────────────────────────────────────────── -->
+  <section class="border-t border-border bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div class="reveal mx-auto mb-14 max-w-2xl text-center" data-delay="0">
+        <span class="text-sm font-semibold uppercase tracking-widest text-primary">Our People</span>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Meet the Team</h2>
+        <p class="mt-4 text-base leading-relaxed text-text-muted">
+          Qualified, caring professionals who put your comfort first in everything they do.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
+        {team.map((member, i) => (
+          <div class="reveal group text-center" data-delay={i * 100}>
+            <div class={`relative mx-auto mb-6 flex h-40 w-40 items-center justify-center overflow-hidden rounded-2xl ${member.bg} transition-transform duration-300 group-hover:-translate-y-1.5 group-hover:shadow-lg`}>
+              <span class={`flex h-20 w-20 items-center justify-center rounded-full text-2xl font-extrabold text-white ${member.accent}`}>
+                {member.initials}
+              </span>
+            </div>
+            <h3 class="font-semibold text-text">{member.name}</h3>
+            <p class="mt-0.5 text-sm font-medium text-primary">{member.role}</p>
+            <p class="mt-2 text-xs leading-relaxed text-text-muted">{member.quals}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── CLINIC FACILITIES ──────────────────────────────────────── -->
+  <section class="py-24" style="background: linear-gradient(150deg, #f0f9ff 0%, #e0f2fe 55%, #f8fafc 100%);">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <div class="reveal mx-auto mb-14 max-w-2xl text-center" data-delay="0">
+        <span class="text-sm font-semibold uppercase tracking-widest text-primary">The Clinic</span>
+        <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-text sm:text-4xl">Our Facilities</h2>
+        <p class="mt-4 text-base text-text-muted">
+          A modern, welcoming environment designed with patient comfort in mind — replace the placeholders below with real photos.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4 lg:grid-cols-4 lg:grid-rows-2">
+        <!-- Large hero facility block -->
+        <div class="reveal col-span-2 row-span-2 overflow-hidden rounded-3xl bg-gradient-to-br from-sky-200 to-blue-300 shadow-lg" data-delay="0">
+          <div class="flex min-h-[360px] h-full flex-col items-center justify-center gap-6 p-10 text-center">
+            <div class="flex h-20 w-20 items-center justify-center rounded-2xl bg-white/60">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/>
+              </svg>
+            </div>
+            <div class="space-y-2">
+              <p class="text-lg font-semibold text-sky-800">Reception &amp; Waiting Area</p>
+              <p class="text-sm text-sky-700/70">Photo coming soon</p>
+            </div>
+          </div>
+        </div>
+
+        {facilities.map((f, i) => (
+          <div class={`reveal overflow-hidden rounded-2xl bg-gradient-to-br ${f.gradient} shadow-md`} data-delay={(i + 1) * 80}>
+            <div class="flex min-h-[170px] flex-col items-center justify-center gap-3 p-6 text-center">
+              <p class={`text-sm font-semibold ${f.textColor}`}>{f.label}</p>
+              <p class="text-xs text-slate-500">Photo coming soon</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── CTA BAND ───────────────────────────────────────────────── -->
+  <section class="relative overflow-hidden bg-primary py-24">
+    <div class="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-white/10 blur-3xl"></div>
+    <div class="relative mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <div class="reveal" data-delay="0">
+        <h2 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Ready to Meet the Team?</h2>
+        <p class="mt-4 text-lg text-white/80">Book an appointment and experience the SmileCare difference first-hand.</p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <a href="/book" class="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-base font-semibold text-primary shadow-xl transition-all duration-200 hover:bg-slate-50 hover:shadow-2xl active:scale-95">
+            Book Appointment
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </a>
+          <a href="tel:+923001234567" class="inline-flex items-center gap-2 rounded-xl border-2 border-white/40 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:border-white hover:bg-white/10 active:scale-95">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/></svg>
+            Call Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+</BaseLayout>

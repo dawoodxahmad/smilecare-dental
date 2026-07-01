@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  /* Color palette */
+  --color-primary: #0EA5E9;
+  --color-primary-dark: #0284C7;
+  --color-primary-light: #38BDF8;
+  --color-accent: #06B6D4;
+  --color-accent-light: #CFFAFE;
+  --color-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text: #1E293B;
+  --color-text-muted: #64748B;
+  --color-border: #E2E8F0;
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* Radii */
+  --radius-card: 1rem;
+  --radius-btn: 0.5rem;
+}
+
+/* ── Inner page hero clearance ─────────────────────────────── */
+/* Explicit padding so the fixed 64px navbar never overlaps content,
+   regardless of which Tailwind utilities are emitted. */
+.inner-hero {
+  padding-top: 10rem;   /* 160px total: 64px navbar + 96px breathing room */
+  padding-bottom: 6rem;
+}
+
+/* ── Animation helpers (used by JS via class toggling) ─────── */
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.anim-hero {
+  opacity: 0;
+  animation: fade-in-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.5rem);
+  transition:
+    opacity   0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.testimonial-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 9999px;
+  background-color: var(--color-border);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: none;
+  padding: 0;
+}
+.testimonial-dot.active {
+  width: 28px;
+  background-color: var(--color-primary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-hero, .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── View Transitions ───────────────────────────────────────── */
+/* Short crossfade so hero animations start feeling fresh, not stuttered. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.18s;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

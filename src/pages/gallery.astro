@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const filters = [
+  { value: 'all',          label: 'All Photos'     },
+  { value: 'clinic',       label: 'Clinic'         },
+  { value: 'treatments',   label: 'Treatments'     },
+  { value: 'before-after', label: 'Before & After' },
+];
+
+const items = [
+  { label: 'Reception & Waiting Area',   category: 'clinic',       gradient: 'linear-gradient(135deg,#bae6fd,#c7d2fe)', delay: 0   },
+  { label: 'Treatment Room 1',           category: 'clinic',       gradient: 'linear-gradient(135deg,#ddd6fe,#c4b5fd)', delay: 60  },
+  { label: 'Treatment Room 2',           category: 'clinic',       gradient: 'linear-gradient(135deg,#a5f3fc,#67e8f9)', delay: 120 },
+  { label: 'Sterilisation Suite',        category: 'clinic',       gradient: 'linear-gradient(135deg,#bbf7d0,#6ee7b7)', delay: 180 },
+  { label: 'Digital Imaging Suite',      category: 'clinic',       gradient: 'linear-gradient(135deg,#fde68a,#fcd34d)', delay: 240 },
+  { label: 'Professional Whitening',     category: 'treatments',   gradient: 'linear-gradient(135deg,#fef3c7,#fde68a)', delay: 60  },
+  { label: 'Orthodontic Fitting',        category: 'treatments',   gradient: 'linear-gradient(135deg,#ede9fe,#ddd6fe)', delay: 120 },
+  { label: 'Implant Procedure',          category: 'treatments',   gradient: 'linear-gradient(135deg,#d1fae5,#a7f3d0)', delay: 180 },
+  { label: 'Kids Check-up',             category: 'treatments',   gradient: 'linear-gradient(135deg,#fce7f3,#fbcfe8)', delay: 240 },
+  { label: 'Whitening Transformation',   category: 'before-after', gradient: 'linear-gradient(135deg,#e0f2fe,#bae6fd)', delay: 80  },
+  { label: 'Full Smile Restoration',     category: 'before-after', gradient: 'linear-gradient(135deg,#f0fdf4,#bbf7d0)', delay: 160 },
+  { label: 'Aligner Journey – 12 Months',category: 'before-after', gradient: 'linear-gradient(135deg,#fdf4ff,#f5d0fe)', delay: 240 },
+];
+
+const categoryLabels: Record<string,string> = {
+  'clinic':       'Clinic',
+  'treatments':   'Treatments',
+  'before-after': 'Before & After',
+};
+---
+
+<BaseLayout
+  title="Gallery — SmileCare Dental Clinic Lahore"
+  description="Browse SmileCare's gallery — our modern clinic facilities, treatment rooms, and patient smile transformations in Gulberg, Lahore."
+>
+
+  <!-- ── HERO STRIP ─────────────────────────────────────────────── -->
+  <section class="inner-hero relative overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-slate-50">
+    <div class="pointer-events-none absolute -right-40 -top-40 h-[540px] w-[540px] rounded-full bg-primary/10 blur-3xl"></div>
+    <div class="pointer-events-none absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-accent/10 blur-3xl"></div>
+
+    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav class="anim-hero text-sm text-text-muted" style="animation-delay:0ms" aria-label="Breadcrumb">
+        <a href="/" class="transition-colors hover:text-primary">Home</a>
+        <span class="mx-2">/</span>
+        <span class="font-medium text-text">Gallery</span>
+      </nav>
+      <h1 class="anim-hero mt-4 text-4xl font-extrabold tracking-tight text-text sm:text-5xl lg:text-6xl" style="animation-delay:100ms">
+        Our <span class="text-primary">Gallery</span>
+      </h1>
+      <p class="anim-hero mt-5 max-w-xl text-lg leading-relaxed text-text-muted" style="animation-delay:200ms">
+        Take a look inside our clinic, see our work in action, and explore smile transformations from our patients.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- ── GALLERY GRID ───────────────────────────────────────────── -->
+  <section class="border-t border-border bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+      <!-- Filter tabs -->
+      <div class="anim-hero mb-14 flex flex-wrap justify-center gap-3" style="animation-delay:0ms" role="tablist" aria-label="Filter gallery by category">
+        {filters.map((f, i) => (
+          <button
+            data-filter={f.value}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            class={`rounded-full px-5 py-2 text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary
+              ${i === 0
+                ? 'bg-primary text-white shadow-md'
+                : 'border border-border bg-white text-text-muted hover:border-primary/40 hover:text-primary'}`}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <!-- Grid -->
+      <div id="gallery-grid" class="grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+        {items.map((item, i) => (
+          <button
+            class="reveal group relative cursor-pointer overflow-hidden rounded-2xl shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            data-gallery-item
+            data-category={item.category}
+            data-label={item.label}
+            data-gradient={item.gradient}
+            aria-label={`View photo: ${item.label}`}
+            data-delay={item.delay}
+          >
+            <!-- Thumbnail -->
+            <div
+              class="aspect-video flex items-center justify-center"
+              style={`background: ${item.gradient};`}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+              </svg>
+            </div>
+
+            <!-- Hover label overlay -->
+            <div class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/65 to-transparent p-3 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+              <p class="text-left text-sm font-semibold leading-tight text-white">{item.label}</p>
+              <p class="mt-0.5 text-left text-xs text-white/70">{categoryLabels[item.category]}</p>
+            </div>
+
+            <!-- Category badge -->
+            <div class="absolute right-2 top-2 rounded-full bg-black/30 px-2 py-0.5 text-xs font-medium text-white backdrop-blur-sm">
+              {categoryLabels[item.category]}
+            </div>
+
+            <!-- Expand icon on hover -->
+            <div class="absolute left-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/>
+              </svg>
+            </div>
+          </button>
+        ))}
+      </div>
+
+      <!-- Empty state (shown by JS when filter yields 0 items) -->
+      <div id="gallery-empty" class="hidden py-16 text-center">
+        <p class="text-text-muted">No photos in this category yet — check back soon.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── LIGHTBOX ───────────────────────────────────────────────── -->
+  <div
+    id="lightbox"
+    class="pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 transition-opacity duration-200"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Photo lightbox"
+  >
+    <!-- Backdrop -->
+    <div id="lb-backdrop" class="absolute inset-0 bg-black/85 backdrop-blur-sm"></div>
+
+    <!-- Panel -->
+    <div
+      id="lb-panel"
+      class="relative z-10 w-full max-w-3xl scale-95 overflow-hidden rounded-2xl bg-white shadow-2xl transition-transform duration-200"
+    >
+      <!-- Image area -->
+      <div id="lb-image" class="relative aspect-video flex items-center justify-center">
+        <!-- prev arrow -->
+        <button id="lb-prev" class="absolute left-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/55" aria-label="Previous photo">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5"/></svg>
+        </button>
+        <!-- placeholder content (behind gradient) -->
+        <div class="relative z-0 flex flex-col items-center gap-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white/30" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+          </svg>
+          <p class="text-sm font-medium text-white/50">Photo coming soon</p>
+        </div>
+        <!-- next arrow -->
+        <button id="lb-next" class="absolute right-3 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/55" aria-label="Next photo">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/></svg>
+        </button>
+      </div>
+
+      <!-- Info bar -->
+      <div class="flex items-center justify-between border-t border-border px-6 py-4">
+        <div>
+          <p id="lb-label" class="font-semibold text-text">Label</p>
+          <p id="lb-category" class="text-sm text-text-muted"></p>
+        </div>
+        <p id="lb-counter" class="text-sm text-text-muted tabular-nums">1 / 12</p>
+      </div>
+
+      <!-- Close button -->
+      <button
+        id="lb-close"
+        class="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full bg-black/30 text-white backdrop-blur-sm transition-colors hover:bg-black/55"
+        aria-label="Close lightbox"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      /* ── Gallery filter ─────────────────────────────────────────── */
+      const allItems   = [...document.querySelectorAll<HTMLElement>('[data-gallery-item]')];
+      if (!allItems.length) return;
+
+      const filterBtns = [...document.querySelectorAll<HTMLElement>('[data-filter]')];
+      const emptyState = document.getElementById('gallery-empty')!;
+
+      let filtered: HTMLElement[] = [...allItems];
+
+      function applyFilter(value: string) {
+        filterBtns.forEach(b => {
+          const on = b.dataset.filter === value;
+          b.classList.toggle('bg-primary',      on);
+          b.classList.toggle('text-white',       on);
+          b.classList.toggle('shadow-md',        on);
+          b.classList.toggle('border-border',   !on);
+          b.classList.toggle('bg-white',        !on);
+          b.classList.toggle('text-text-muted', !on);
+          b.setAttribute('aria-selected', String(on));
+        });
+
+        allItems.forEach(item => {
+          const show = value === 'all' || item.dataset.category === value;
+          item.style.display = show ? '' : 'none';
+        });
+
+        filtered = allItems.filter(item => value === 'all' || item.dataset.category === value);
+        emptyState.classList.toggle('hidden', filtered.length > 0);
+      }
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => applyFilter(btn.dataset.filter ?? 'all'));
+      });
+
+
+      /* ── Lightbox ───────────────────────────────────────────────── */
+      const lb      = document.getElementById('lightbox')!;
+      const lbPanel = document.getElementById('lb-panel')!;
+      const lbImage = document.getElementById('lb-image')!;
+      const lbLabel = document.getElementById('lb-label')!;
+      const lbCat   = document.getElementById('lb-category')!;
+      const lbCtr   = document.getElementById('lb-counter')!;
+      const lbClose = document.getElementById('lb-close')!;
+      const lbPrev  = document.getElementById('lb-prev')!;
+      const lbNext  = document.getElementById('lb-next')!;
+      const lbBd    = document.getElementById('lb-backdrop')!;
+
+      const catLabels: Record<string, string> = {
+        clinic: 'Clinic', treatments: 'Treatments', 'before-after': 'Before & After',
+      };
+
+      let current = 0;
+      let isOpen  = false;
+
+      function updateContent() {
+        const item = filtered[current];
+        lbImage.style.background = item.dataset.gradient ?? '#e0f2fe';
+        lbLabel.textContent      = item.dataset.label ?? '';
+        lbCat.textContent        = catLabels[item.dataset.category ?? ''] ?? '';
+        lbCtr.textContent        = `${current + 1} / ${filtered.length}`;
+      }
+
+      function open(idx: number) {
+        current = ((idx % filtered.length) + filtered.length) % filtered.length;
+        updateContent();
+        lb.classList.remove('pointer-events-none', 'opacity-0');
+        lb.classList.add('opacity-100');
+        lbPanel.classList.remove('scale-95');
+        lbPanel.classList.add('scale-100');
+        document.body.style.overflow = 'hidden';
+        isOpen = true;
+        lbClose.focus();
+      }
+
+      function close() {
+        lb.classList.add('pointer-events-none', 'opacity-0');
+        lb.classList.remove('opacity-100');
+        lbPanel.classList.add('scale-95');
+        lbPanel.classList.remove('scale-100');
+        document.body.style.overflow = '';
+        isOpen = false;
+      }
+
+      allItems.forEach(item => {
+        item.addEventListener('click', () => {
+          const idx = filtered.indexOf(item);
+          if (idx !== -1) open(idx);
+        });
+      });
+
+      lbClose.addEventListener('click', close);
+      lbBd.addEventListener('click', close);
+      lbPrev.addEventListener('click', (e) => { e.stopPropagation(); current = (current - 1 + filtered.length) % filtered.length; updateContent(); });
+      lbNext.addEventListener('click', (e) => { e.stopPropagation(); current = (current + 1) % filtered.length; updateContent(); });
+
+      document.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (!isOpen) return;
+        if (e.key === 'Escape')     { close(); return; }
+        if (e.key === 'ArrowLeft')  { current = (current - 1 + filtered.length) % filtered.length; updateContent(); }
+        if (e.key === 'ArrowRight') { current = (current + 1) % filtered.length; updateContent(); }
+      });
+    });
+  </script>
+
+</BaseLayout>
