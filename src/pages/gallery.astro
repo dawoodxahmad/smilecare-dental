@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 
 const filters = [
   { value: 'all',          label: 'All Photos'     },
@@ -36,24 +37,12 @@ const categoryLabels: Record<string,string> = {
 >
 
   <!-- ── HERO STRIP ─────────────────────────────────────────────── -->
-  <section class="inner-hero relative overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-slate-50">
-    <div class="pointer-events-none absolute -right-40 -top-40 h-[540px] w-[540px] rounded-full bg-primary/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-accent/10 blur-3xl"></div>
-
-    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav class="anim-hero text-sm text-text-muted" style="animation-delay:0ms" aria-label="Breadcrumb">
-        <a href="/" class="transition-colors hover:text-primary">Home</a>
-        <span class="mx-2">/</span>
-        <span class="font-medium text-text">Gallery</span>
-      </nav>
-      <h1 class="anim-hero mt-4 text-4xl font-extrabold tracking-tight text-text sm:text-5xl lg:text-6xl" style="animation-delay:100ms">
-        Our <span class="text-primary">Gallery</span>
-      </h1>
-      <p class="anim-hero mt-5 max-w-xl text-lg leading-relaxed text-text-muted" style="animation-delay:200ms">
-        Take a look inside our clinic, see our work in action, and explore smile transformations from our patients.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    crumb="Gallery"
+    preTitle="Our"
+    highlight="Gallery"
+    description="Take a look inside our clinic, see our work in action, and explore smile transformations from our patients."
+  />
 
 
   <!-- ── GALLERY GRID ───────────────────────────────────────────── -->

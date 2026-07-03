@@ -1,0 +1,43 @@
+---
+import Arc from './Arc.astro';
+
+interface Props {
+  crumb: string;
+  preTitle: string;
+  highlight: string;
+  postTitle?: string;
+  description: string;
+}
+const { crumb, preTitle, highlight, postTitle = '', description } = Astro.props;
+---
+
+<section class="inner-hero relative overflow-hidden bg-bg">
+  <!-- Warm radial wash — replaces generic blurred-blob decoration -->
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: radial-gradient(ellipse 900px 500px at 15% 0%, rgba(198,150,63,0.10), transparent 60%), radial-gradient(ellipse 700px 500px at 100% 20%, rgba(15,107,82,0.08), transparent 60%);"
+  ></div>
+
+  <!-- Signature smile-arc backdrop -->
+  <Arc
+    variant="hero"
+    animate
+    class="pointer-events-none absolute -bottom-6 left-1/2 h-auto w-[130%] max-w-none -translate-x-1/2 opacity-70 sm:w-[900px]"
+  />
+
+  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <nav class="anim-hero text-sm text-text-muted" style="animation-delay:0ms" aria-label="Breadcrumb">
+      <a href="/" class="transition-colors hover:text-primary">Home</a>
+      <span class="mx-2">/</span>
+      <span class="font-medium text-text">{crumb}</span>
+    </nav>
+    <h1 class="anim-hero font-display mt-5 text-4xl font-semibold tracking-tight text-text sm:text-5xl lg:text-6xl" style="animation-delay:100ms">
+      {preTitle} <span class="text-primary">{highlight}</span>{postTitle ? ` ${postTitle}` : ''}
+    </h1>
+    <p class="anim-hero mt-5 max-w-xl text-lg leading-relaxed text-text-muted" style="animation-delay:200ms">
+      {description}
+    </p>
+
+    <slot />
+  </div>
+</section>

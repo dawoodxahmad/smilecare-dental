@@ -1,0 +1,43 @@
+---
+interface Props {
+  variant?: 'eyebrow' | 'hero';
+  class?: string;
+  animate?: boolean;
+}
+const { variant = 'eyebrow', class: className = '', animate = false } = Astro.props;
+---
+
+{variant === 'eyebrow' ? (
+  <svg
+    viewBox="0 0 48 12"
+    class={`h-2.5 w-12 text-accent ${className}`}
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M2 3.5 Q24 12 46 3.5"
+      stroke="currentColor"
+      stroke-width="2.25"
+      stroke-linecap="round"
+      class={animate ? 'arc-draw' : ''}
+      pathLength="160"
+    />
+  </svg>
+) : (
+  <svg
+    viewBox="0 0 480 160"
+    class={`text-accent ${className}`}
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M8 130 Q240 10 472 130"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      opacity="0.55"
+      class={animate ? 'arc-draw' : ''}
+      pathLength="160"
+    />
+  </svg>
+)}

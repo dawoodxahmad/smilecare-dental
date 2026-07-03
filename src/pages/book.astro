@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 ---
 
 <BaseLayout
@@ -8,24 +9,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 >
 
   <!-- ── HERO STRIP ─────────────────────────────────────────────── -->
-  <section class="inner-hero relative overflow-hidden bg-gradient-to-br from-sky-50 via-blue-50 to-slate-50">
-    <div class="pointer-events-none absolute -right-40 -top-40 h-[540px] w-[540px] rounded-full bg-primary/10 blur-3xl"></div>
-    <div class="pointer-events-none absolute -bottom-20 -left-40 h-[400px] w-[400px] rounded-full bg-accent/10 blur-3xl"></div>
-
-    <div class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <nav class="anim-hero text-sm text-text-muted" style="animation-delay:0ms" aria-label="Breadcrumb">
-        <a href="/" class="transition-colors hover:text-primary">Home</a>
-        <span class="mx-2">/</span>
-        <span class="font-medium text-text">Book Appointment</span>
-      </nav>
-      <h1 class="anim-hero mt-4 text-4xl font-extrabold tracking-tight text-text sm:text-5xl lg:text-6xl" style="animation-delay:100ms">
-        Book Your <span class="text-primary">Appointment</span>
-      </h1>
-      <p class="anim-hero mt-5 max-w-xl text-lg leading-relaxed text-text-muted" style="animation-delay:200ms">
-        Choose a time that works for you — the scheduler below shows live availability. We're open Monday to Saturday, 9 AM – 7 PM.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    crumb="Book Appointment"
+    preTitle="Book Your"
+    highlight="Appointment"
+    description="Choose a time that works for you — the scheduler below shows live availability. We're open Monday to Saturday, 9 AM – 7 PM."
+  />
 
 
   <!-- ── CALENDLY INLINE WIDGET ─────────────────────────────────── -->
@@ -50,7 +39,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 
   <!-- ── ALTERNATIVES STRIP ─────────────────────────────────────── -->
-  <section class="border-t border-border py-16" style="background: linear-gradient(150deg, #f0f9ff 0%, #e0f2fe 55%, #f8fafc 100%);">
+  <section class="border-t border-border py-16" style="background: linear-gradient(150deg, #F7F0DD 0%, #F0E1BF 55%, #FBF7EF 100%);">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
       <p class="reveal text-base text-text-muted" data-delay="0">Prefer to book by phone or have a question first?</p>
       <div class="reveal mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row" data-delay="80">

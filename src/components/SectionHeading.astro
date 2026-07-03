@@ -1,0 +1,26 @@
+---
+import Arc from './Arc.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  align?: 'center' | 'left';
+  class?: string;
+}
+const { eyebrow, title, description, align = 'center', class: className = '' } = Astro.props;
+const centered = align === 'center';
+---
+
+<div class={`reveal ${centered ? 'mx-auto max-w-2xl text-center' : ''} ${className}`} data-delay="0">
+  <div class={`inline-flex flex-col gap-2 ${centered ? 'items-center' : 'items-start'}`}>
+    <span class="text-sm font-semibold uppercase tracking-[0.2em] text-primary">{eyebrow}</span>
+    <Arc />
+  </div>
+  <h2 class="font-display mt-4 text-3xl font-semibold tracking-tight text-text sm:text-4xl">
+    {title}
+  </h2>
+  {description && (
+    <p class="mt-4 text-base leading-relaxed text-text-muted">{description}</p>
+  )}
+</div>

@@ -17,8 +17,8 @@ const navLinks = [
 
     <!-- Logo -->
     <a href="/" class="flex items-baseline gap-0.5 select-none" aria-label="SmileCare home">
-      <span class="text-2xl font-extrabold tracking-tight text-primary">Smile</span>
-      <span class="text-2xl font-extrabold tracking-tight text-text">Care</span>
+      <span class="font-display text-2xl font-semibold tracking-tight text-primary">Smile</span>
+      <span class="font-display text-2xl font-semibold tracking-tight text-text">Care</span>
     </a>
 
     <!-- Desktop navigation -->
@@ -29,11 +29,13 @@ const navLinks = [
           class="group relative px-3 py-2 text-sm font-medium text-text transition-colors duration-200 hover:text-primary"
         >
           {label}
-          <!-- animated underline -->
-          <span
-            class="absolute bottom-1 left-3 right-3 h-0.5 origin-left scale-x-0 rounded-full bg-primary
-                   transition-transform duration-200 group-hover:scale-x-100"
-          ></span>
+          <!-- animated smile-arc underline -->
+          <svg
+            class="absolute bottom-0.5 left-3 right-3 h-1.5 w-[calc(100%-1.5rem)] origin-left scale-x-0 text-accent transition-transform duration-300 ease-out group-hover:scale-x-100"
+            viewBox="0 0 40 8" fill="none" aria-hidden="true"
+          >
+            <path d="M2 2 Q20 8 38 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+          </svg>
         </a>
       ))}
 
@@ -51,7 +53,7 @@ const navLinks = [
       id="hamburger-btn"
       type="button"
       class="flex h-10 w-10 items-center justify-center rounded-md text-text
-             transition-colors hover:bg-slate-100 md:hidden"
+             transition-colors hover:bg-surface-alt md:hidden"
       aria-label="Toggle navigation menu"
       aria-expanded="false"
       aria-controls="mobile-drawer"
@@ -77,7 +79,7 @@ const navLinks = [
     aria-hidden="true"
   >
     <nav
-      class="border-t border-slate-100 bg-white px-4 pb-5 pt-2"
+      class="border-t border-border bg-white px-4 pb-5 pt-2"
       aria-label="Mobile navigation"
     >
       {navLinks.map(({ href, label }) => (
